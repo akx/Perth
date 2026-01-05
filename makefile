@@ -12,4 +12,4 @@ lint:
 	uv run ruff format --check $(SCOPE)
 
 test: 
-	uv run python -m unittest discover tests
+	uv run --all-extras --dev pytest tests
