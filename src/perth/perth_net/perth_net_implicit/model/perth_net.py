@@ -1,4 +1,5 @@
 import torch
+import logging
 
 # import torchaudio
 import torch.nn.functional as F
@@ -11,6 +12,8 @@ from . import compute_subband_freq
 from .encoder import Encoder
 from .decoder import Decoder
 # from ..utils import magphase_to_cx, cx_to_magphase
+
+logger = logging.getLogger(__name__)
 
 
 def lerp(x, size=None, scale=None):
@@ -128,7 +131,7 @@ class PerthNet(nn.Module):
         ckpt = cm.load_latest()
         assert ckpt is not None, "No checkpoint found"
         perth_net.load_state_dict(ckpt["model"])
-        print(f"loaded PerthNet (Implicit) at step {ckpt['step']:,}")
+        logger.info(f"loaded PerthNet (Implicit) at step {ckpt['step']:,}")
         return perth_net
 
     @staticmethod
