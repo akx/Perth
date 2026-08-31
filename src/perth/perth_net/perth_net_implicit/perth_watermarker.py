@@ -3,7 +3,6 @@ import numpy as np
 from librosa import resample
 
 from .model.perth_net import PerthNet
-from .. import PREPACKAGED_MODELS_DIR
 from perth.watermarker import WatermarkerBase
 
 
@@ -17,12 +16,16 @@ class PerthImplicitWatermarker(WatermarkerBase):
     def __init__(
         self,
         run_name: str = "implicit",
-        models_dir=PREPACKAGED_MODELS_DIR,
+        models_dir=None,
         device="cpu",
         perth_net=None,
     ):
         assert (run_name is None) or (perth_net is None)
         if perth_net is None:
+            if not models_dir:
+                from perth.config import Config
+
+                models_dir = Config.get_default_models_dir()
             self.perth_net = PerthNet.load(run_name, models_dir).to(device)
         else:
             self.perth_net = perth_net.to(device)

@@ -34,6 +34,10 @@ class Config:
         },
     }
 
+    @classmethod
+    def get_default_models_dir(cls) -> str:
+        return os.path.join(os.path.dirname(__file__), "perth_net", "pretrained")
+
     def __init__(self, config_path: Optional[str] = None):
         """
         Initialize configuration with default values and optional user config.
@@ -47,12 +51,7 @@ class Config:
             self._config[section] = values.copy()
 
         # Set default models directory
-        self._config["perth"]["models_dir"] = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "perth",
-            "perth_net",
-            "pretrained",
-        )
+        self._config["perth"]["models_dir"] = self.get_default_models_dir()
 
         # Load user config if provided
         if config_path and os.path.exists(config_path):
