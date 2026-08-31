@@ -32,8 +32,8 @@ jobs:
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           version: "latest"
-      - name: Install Python 3.13
-        run: uv python install 3.13
+          python-version: "3.13"
+          activate-environment: 'true'
       - name: Install project
         run: uv sync --all-groups
       - name: Lints / Type Checking
@@ -48,8 +48,8 @@ jobs:
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           version: "latest"
-      - name: Install Python 3.13
-        run: uv python install 3.13
+          python-version: "3.13"
+          activate-environment: 'true'
       - name: Install project
         run: uv sync --all-groups --all-extras
       - name: Unit and Integration Tests
@@ -69,11 +69,10 @@ jobs:
         uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           version: "latest"
-      - name: Install Python 3.13
-        run: uv python install 3.13
+          python-version: "3.13"
+          activate-environment: 'true'
       - name: Install project
         run: uv sync --all-groups
-
       - name: build
         run: uv build
       - name: Publish
