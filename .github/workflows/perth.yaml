@@ -8,7 +8,7 @@ defaults:
 on:
   pull_request:
     branches:
-      - main
+      - master
     paths:
       - ".github/workflows/perth.yaml"
       - "src/**"
@@ -16,7 +16,7 @@ on:
       - "pyproject.toml"
   push:
     branches:
-      - main
+      - master
     paths:
       - ".github/workflows/perth.yaml"
       - "src/**"
@@ -58,7 +58,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     # only publish off main branch
-    if: github.repository == 'resemble-ai/Perth' && github.ref == 'refs/heads/main'
+    if: github.repository == 'resemble-ai/Perth' && github.ref == 'refs/heads/master'
     permissions:
       id-token: write
       contents: read
