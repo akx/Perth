@@ -57,6 +57,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    needs: [tests]
     # only publish off main branch
     if: github.repository == 'resemble-ai/Perth' && github.ref == 'refs/heads/master'
     permissions:
